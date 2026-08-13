@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Plum Articles! Featuring local authors about local Omaha, NE stuff
+{% endblock %}
+{% block css %}
+<link href="{% static 'css/store.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block toptext %}LIBRARY{% endblock %}
+{% block firstmenu %}<a href="{% url 'index' %}"><div class="first"><h1>HOME</h1></div></a>{% endblock %}
+{% block content %}
+    <div class="store articles">
+    {% for article in articles %}
+    <a href="{% url 'article' slug=article.slug %}">
+        
+        <div class="item" style="padding: .5rem;">
+            {% if not article.published %}UNPUBLISHED{% endif %}
+            <h3 style="margin: .5rem .5rem .75rem;">{{ article }}</h3>
+            {% if article.image %}    
+                <div class="image">
+                    <img src="{{ article.image.url }}">
+                </div>
+            {% endif %}
+        </div>
+    </a>
+    {% empty %}
+    <p style="background-color: white;">none yet!</p>
+    
+    {% endfor %}
+</div>
+{% endblock %}
+
+
+{% block fixed %}
+<div class="store-left">
+    <a href="{% url 'articlelist' %}">
+    <div class="item {% if not category %}picked{% endif %}">
+        <h2>ALL</h2>
+    </div></a>
+    {% for thing in categories %}
+    <a href="{% url 'articlecategory' category=thing %}">
+    <div class="item {% if category == thing.name %}picked{% endif %}">
+        <h3>{{ thing }}</h3>
+    </div></a>
+    {% endfor %}
+</div>
+{% endblock %}
+

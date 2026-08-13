@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Planet Plum! Omaha, NE | Label | Promoter | Publisher
+{% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+
+<div class="idx">
+
+{% for bubble in bubbles%}
+    <div class="section">
+        {% if bubble.link %}<a href="{{ bubble.link }}">{% endif %}
+            <h1>{{ bubble.name }}</h1>
+            {% if bubble.image %}<img {% if bubble.link %}style="box-shadow: .5rem .5rem 0 0 #6f63c0;"{% endif %} width=100% src={{ bubble.image.url }}>{% endif %}
+            {% if bubble.description %}<p style="margin: 1rem 0 .25rem;">{{ bubble.description|linebreaksbr|urlizetrunc:20 }}</p>{% endif %}
+            {% if bubble.linkdesc %}<button class="button">{{ bubble.linkdesc }}</button>{% endif %}
+            {% if bubble.embed %}{{ bubble.embed|safe }}{% endif %}
+        {% if bubble.link %}</a>{% endif %}
+    </div>
+{% endfor %}
+
+<div class="section">
+    <h1>Keep Plummin'</h1>
+    <a href="{% url 'login' %}"><img src="{% static 'images/fish.png' %}"></a>
+</div>
+
+</div><!--end of index div-->
+
+
+
+{% endblock %}
