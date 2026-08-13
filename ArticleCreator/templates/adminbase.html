@@ -1,0 +1,25 @@
+{% if not user.is_admin %}
+ummmm wyd bruh
+{% else %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>
+        {% block title %}
+            admin
+        {% endblock %}
+    </title>
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+    <a href="{% url 'index' %}">back to page</a>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
+{% endif %}
