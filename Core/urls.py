@@ -10,7 +10,6 @@ sitemaps = {
 }
 
 urlpatterns = [
-    path('admin/', include('django.contrib.auth.urls')),
     path('', include("ArticleCreator.urls")),
 
     path(

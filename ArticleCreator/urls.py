@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from . import adminviews
+from . import CRUD
 
 urlpatterns = [
     path('', views.articleList, name='index'),
@@ -11,5 +11,4 @@ urlpatterns = [
     path('articlecreator/<articleID>/<sectionID>/<action>/', views.articleCreator, name='articlesectionaction'),
     path('publisher/<articleID>/', views.publishArticle, name='publisharticle'),
     path('<slug:slug>/', views.article, name='article'),
-    path('adminpanel/', adminviews.admin, name='admin')
 ]

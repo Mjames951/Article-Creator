@@ -13,9 +13,6 @@ def index(request):
 # Create your views here.
 def articleList(request, category=None):
     articles = Article.objects.filter(published=True)
-    if request.user.is_authenticated:
-        if request.user.is_admin():
-            articles = Article.objects.all()
     categories = Category.objects.all()
     if category: articles = articles.filter(category__name=category) 
     print(categories)
@@ -26,7 +23,6 @@ def articleList(request, category=None):
     })
 
 def articleCreator(request, articleID, sectionID=None, action=None):
-    if not request.user.is_authenticated: return redirect('index')
 
     article = get_object_or_404(Article, id=articleID)
     section = get_object_or_404(Section, id=sectionID) if sectionID else None
@@ -110,7 +106,7 @@ def article(request, slug):
         section.text = MarkDown.convert(section.text) if section.text else None
         section.caption = MarkDown.convert(section.caption) if section.caption else None
         sections.append(section)
-    return render(request, 'blog.html', {
+    return render(request, 'ArticleCreator.html', {
         'article': article,
         'sections': sections
     })

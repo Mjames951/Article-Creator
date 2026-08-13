@@ -1,8 +1,14 @@
 from django.db import models
 from django.urls import reverse, reverse_lazy
 from django.utils.text import slugify
+from django.apps import apps
 
 adminURL = reverse_lazy('admin')
+
+def getModel(modelname):
+    apps.get_model(app_label="ArticleCreator", model_name=modelname)
+
+# to get the modelname: model._meta.model_name
 
 class Author(models.Model):
     name = models.CharField(max_length=255)

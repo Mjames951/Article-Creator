@@ -8,61 +8,21 @@
         article creator
     </title>
     {% block css %}{% endblock %}
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
 </head>
 <body>
-    {% block header %}
-    <div class="base-top">
-        
-        <a href="{% url 'index' %}">
-        <div class="left">
-            <h1>{% block toptext %}PLANET PLUM{% endblock %}</h1>
-        </div></a>
-        <div onclick="openMenu()" style="background-color: lightskyblue;" class="menubutton" id="menubutton">
-            <img id='menubuttonimg' src="{% static 'images/Hamburger.svg' %}">
-        </div>
-    </div>
-    <div class="top-spacer"></div>
-    <div class="menu-container">
+    <header>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+        </ul>
+    </header>
 
-    
-    <div class="menu" id="menu">
-        {% block firstmenu %}
-        <a href="{% url 'articlelist' %}"><div class="first"><h1>ARTICLES</h1></div></a>
-        {% endblock %}
-        {% if user.is_admin %}<a href="{% url 'admin' %}"><div><h1>ADMIN</h1></div></a>{% endif %}
-    </div></div>
-    {% endblock %}
-    <div class="fixed" id="fixed">
-    {% block fixed %}
-
-    {% endblock %}
-    </div>
+    <main>
     {% block content %}
-    <p>hey guys</p>
+
     {% endblock %}
-    {% block script %}
-    {% endblock %}
-    <script>
-        function back(){
-            window.history.back()
-        }
-        
-        menuOpen = false
-        function openMenu(){
-            if (menuOpen == false){
-                document.getElementById("menu").style.display = 'block';
-                document.getElementById('menubutton').innerHTML = "<img id='menubuttonimg' src='{% static 'images/X.svg' %}'>";
-                document.getElementById("fixed").style.display = 'none';
-                menuOpen = true;
-            } else {
-                document.getElementById("menu").style.display = 'none';
-                document.getElementById("menubutton").innerHTML = "<img id='menubuttonimg' src='{% static 'images/Hamburger.svg' %}'>";
-                document.getElementById("fixed").style.display = 'block';
-                menuOpen = false;
-            }
-        }
-    </script>
+    </main>
 </body>
 
 </html>
