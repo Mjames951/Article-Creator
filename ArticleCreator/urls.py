@@ -1,8 +1,9 @@
 from django.urls import path
 from . import views
+from . import adminviews
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.articleList, name='index'),
     path('library/', views.articleList, name='articlelist'),
     path('library/<category>/', views.articleList, name='articlecategory'),
     path('articlecreator/<articleID>/', views.articleCreator, name='articleeditor'),
@@ -10,4 +11,5 @@ urlpatterns = [
     path('articlecreator/<articleID>/<sectionID>/<action>/', views.articleCreator, name='articlesectionaction'),
     path('publisher/<articleID>/', views.publishArticle, name='publisharticle'),
     path('<slug:slug>/', views.article, name='article'),
+    path('adminpanel/', adminviews.admin, name='admin')
 ]

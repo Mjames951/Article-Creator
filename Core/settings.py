@@ -7,9 +7,9 @@ env = environ.Env()
 
 IMG_MAX_WIDTH_HEIGHT = 500
 
-
+SITE_ID = 1 
 BASE_DIR = Path(__file__).resolve().parent.parent
-BASE_URL = ''
+BASE_URL = 'localhost'
 
 environ.Env.read_env(BASE_DIR / '.env', overwrite=True)
 

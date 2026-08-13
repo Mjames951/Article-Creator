@@ -5,36 +5,22 @@ from .models import *
 from .forms import *
 from .tools import emailhandler
 
-from blog.models import Article, Section, Author
-from blog.models import Category as ArticleCategory
-from blog.forms import ArticleStarterForm, ArticleForm, AuthorForm, ArticleCategoryForm 
+from ArticleCreator.models import Article, Author
+from ArticleCreator.models import Category as ArticleCategory
+from ArticleCreator.forms import ArticleStarterForm, AuthorForm, ArticleCategoryForm 
 
 Models = {
-    "product": Product,
-    'category': Category,
-    "subproduct": Product,
-    'shipping': Shipping,
+
     'article': Article,
-    'articlesection': Section,
     'author': Author,
-    'bubble': Bubble,
     'articlecategory': ArticleCategory,
-    'todosection': PlumTodoSection,
-    'todo': PlumTodo
+ 
 }
 
 Forms = {
-    "product": ProductForm,
-    'category': CategoryForm,
-    'subproduct': SubProductForm,
-    'shipping': ShippingForm,
     'article': ArticleStarterForm,
-    'articlesection': ArticleForm,
     'author': AuthorForm,
-    'bubble': BubbleForm,
     'articlecategory': ArticleCategoryForm,
-    'todosection': TodoSectionForm,
-    'todo': TodoForm
 }
 
 @login_required

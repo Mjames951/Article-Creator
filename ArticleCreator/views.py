@@ -19,7 +19,7 @@ def articleList(request, category=None):
     categories = Category.objects.all()
     if category: articles = articles.filter(category__name=category) 
     print(categories)
-    return render(request, 'blog/list.html', {
+    return render(request, 'list.html', {
         'articles': articles,
         'categories': categories,
         'category': category,
@@ -93,7 +93,7 @@ def articleCreator(request, articleID, sectionID=None, action=None):
         section.text = MarkDown.convert(section.text) if section.text else None
         section.caption = MarkDown.convert(section.caption) if section.caption else None
         sections.append(section)
-    return render(request, 'blog/editor.html', {
+    return render(request, 'editor.html', {
         'article': article,
         'form': form,
         'sections': sections,
@@ -110,7 +110,7 @@ def article(request, slug):
         section.text = MarkDown.convert(section.text) if section.text else None
         section.caption = MarkDown.convert(section.caption) if section.caption else None
         sections.append(section)
-    return render(request, 'blog/blog.html', {
+    return render(request, 'blog.html', {
         'article': article,
         'sections': sections
     })
