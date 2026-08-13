@@ -1,6 +1,5 @@
 from django.contrib.sitemaps import Sitemap
-from shop.models import Product
-from blog.models import Article
+from ArticleCreator.models import Article
 from django.urls import reverse
 
 class StaticSitemap(Sitemap):
@@ -8,16 +7,9 @@ class StaticSitemap(Sitemap):
     changefreq = 'monthly'
     
     def items(self):
-        return ['index', 'storeall', 'articlelist', 'about']
+        return ['index', 'articlelist', 'about']
     def location(self, item):
         return reverse(item)
-    
-class ProductSitemap(Sitemap):
-    priority = 0.9
-    changefreq = 'daily'
-
-    def items(self):
-        return Product.objects.filter(parent=None, published=True)
     
 class ArticleSitemap(Sitemap):
     priority = 0.8

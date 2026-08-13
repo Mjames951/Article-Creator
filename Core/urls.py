@@ -6,14 +6,12 @@ from .sitemaps import *
 
 sitemaps = {
     "static": StaticSitemap,
-    "products": ProductSitemap,
     "articles": ArticleSitemap
 }
 
 urlpatterns = [
     path('onetwothreethatsenoughforme/', include('django.contrib.auth.urls')),
-    path('', include("shop.urls")),
-    path('article/', include("blog.urls")),
+    path('article/', include("ArticleCreator.urls")),
 
     path(
         "sitemap.xml",

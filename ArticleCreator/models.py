@@ -34,8 +34,7 @@ class Article(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.SET_NULL)
     image = models.ImageField(upload_to='articleheaderimages/', blank=True, null=True)
-    caption = models.CharField(max_length=256, null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
+    content = models.TextField(null=True, blank=True)
     author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, blank=True)
     
     def __str__(self):
@@ -47,21 +46,6 @@ class Article(models.Model):
             self.slug = slugify(self.title)
         try:
             this = Article.objects.get(id=self.id)
-            if this.image != self.image:
-                this.image.delete(save=False)
-        except:
-            pass
-        super().save(*args, **kwargs)
-
-class Section(models.Model):
-    text = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to='articleImages/', blank=True, null=True)
-    caption = models.CharField(max_length=256, null=True, blank=True)
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='sections')
-    order = models.IntegerField(null=True)
-    def save(self, *args, **kwargs):
-        try:
-            this = Section.objects.get(id=self.id)
             if this.image != self.image:
                 this.image.delete(save=False)
         except:

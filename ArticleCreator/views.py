@@ -1,12 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from .forms import *
-from shop.tools.imagehandler import addImage
+from .tools.imagehandler import addImage
 import markdown
 from django.utils import timezone
 
 MarkDown = markdown.Markdown(extensions=["fenced_code"])
 
+def index(request):
+    return None
 
 # Create your views here.
 def articleList(request, category=None):

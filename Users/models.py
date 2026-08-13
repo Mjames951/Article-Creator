@@ -17,7 +17,7 @@ class CustomUser(AbstractUser):
     
 
 class UserProfile(models.Model):  # new
-    user = models.OneToOneField("users.CustomUser",on_delete=models.CASCADE)
+    user = models.OneToOneField("Users.CustomUser",on_delete=models.CASCADE)
     image = models.ImageField(upload_to="userpfps/", blank=True, null=True)
     description = models.TextField(null=True, blank=True)
     primary = ColorField(default="#6666ff")
@@ -38,6 +38,6 @@ class UserProfile(models.Model):  # new
             pass
         super(UserProfile, self).save(*args, **kwargs)
 
-@receiver(post_save, sender=CustomUser)  # new
+@receiver(post_save, sender=CustomUser) 
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     UserProfile.objects.get_or_create(user=instance)

@@ -4,13 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <meta name="description"content="
-        {% block description %}
-            Planet Plum is a local Omaha, NE based Independent Label, Publisher, and Promoter!
-        {% endblock description %}">
-    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
     <title>
-        {% block title %}Planet Plum! Local Omaha, NE Independent Record Label, Promoter, and Publisher.{% endblock %}
+        article creator
     </title>
     {% block css %}{% endblock %}
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
@@ -33,10 +28,8 @@
     
     <div class="menu" id="menu">
         {% block firstmenu %}
-        <a href="{% url 'articlelist' %}"><div class="first"><h1>LIBRARY</h1></div></a>
+        <a href="{% url 'articlelist' %}"><div class="first"><h1>ARTICLES</h1></div></a>
         {% endblock %}
-        <a href="{% url 'storeall' %}"><div><h1>STORE</h1></div></a>
-        <a href="{% url 'about' %}"><div><h1>ABOUT</h1></div></a>
         {% if user.is_admin %}<a href="{% url 'admin' %}"><div><h1>ADMIN</h1></div></a>{% endif %}
     </div></div>
     {% endblock %}
