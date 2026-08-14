@@ -7,22 +7,21 @@
     <title>
         article creator
     </title>
-    {% block css %}{% endblock %}
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
 </head>
 <body>
     <header>
         <ul>
-            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'index' %}">Articles</a></li>
+            <li><a href="{% url 'editor' articleID=0 %}">Editor</a></li>
         </ul>
     </header>
 
-    <main>
-    {% block content %}
-
-    {% endblock %}
-    </main>
+    <main id="main">
+    {% block main %}
+        <h1>Article Creator</h1>
+    {% endblock %}    
+    </main>  
 </body>
 
 </html>

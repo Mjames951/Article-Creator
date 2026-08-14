@@ -13,13 +13,8 @@ def index(request):
 # Create your views here.
 def articleList(request, category=None):
     articles = Article.objects.filter(published=True)
-    categories = Category.objects.all()
-    if category: articles = articles.filter(category__name=category) 
-    print(categories)
-    return render(request, 'list.html', {
+    return render(request, 'articlelist/articlelist.html', {
         'articles': articles,
-        'categories': categories,
-        'category': category,
     })
 
 def articleCreator(request, articleID, sectionID=None, action=None):
@@ -89,7 +84,7 @@ def articleCreator(request, articleID, sectionID=None, action=None):
         section.text = MarkDown.convert(section.text) if section.text else None
         section.caption = MarkDown.convert(section.caption) if section.caption else None
         sections.append(section)
-    return render(request, 'editor.html', {
+    return render(request, 'editor/editor.html', {
         'article': article,
         'form': form,
         'sections': sections,
@@ -97,18 +92,8 @@ def articleCreator(request, articleID, sectionID=None, action=None):
 
 def article(request, slug):
     article = get_object_or_404(Article, slug=slug)
-    sections = []
-    articleSections = article.sections.all()
-    articleSections = articleSections.order_by("order")
-    article.description = MarkDown.convert(article.description) if article.description else None
-    article.caption = MarkDown.convert(article.caption) if article.caption else None
-    for section in articleSections:
-        section.text = MarkDown.convert(section.text) if section.text else None
-        section.caption = MarkDown.convert(section.caption) if section.caption else None
-        sections.append(section)
-    return render(request, 'ArticleCreator.html', {
+    return render(request, 'article/article.html', {
         'article': article,
-        'sections': sections
     })
 
 def publishArticle(request, articleID):

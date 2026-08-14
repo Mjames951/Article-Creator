@@ -3,18 +3,42 @@
 }
 body {
   overflow-wrap: break-word;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 5rem;
 }
 
 h1 {
  font-size: 2rem; 
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  text-decoration: underline;
 }
 
 p {
   line-height: 1.6rem; /*I find the default HTML line-height tends to be a bit claustrophobic for main text*/
 }
+.caption {
+  margin-top: 0;
+  font-size: 0.9em;
+  font-style: italic;
+  text-align: center;
+}
 
 hr {
   border-width: 2px 0 0 0;
+}
+
+li {
+    list-style: none;
+    padding: .25rem 1.5rem;
+    background-image: url("../images/star.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 1rem;
 }
 
 pre {
@@ -44,26 +68,13 @@ img {
   text-align: center;
 }
 
-@media only screen and (min-width: 600px) {
-  .small {
-    max-width: 60%;
-    height: auto;
-  }
-  
-  pre {
-    font-size: 0.7rem; 
-  }
-}
-
-.caption {
-  margin-top: 0;
-  font-size: 0.9em;
-  font-style: italic;
-  text-align: center;
+video {
+  border: 2px solid black; 
+  width: 100%;
+  height: auto;
 }
 
 
-/*#CONTAINER is the rectangle that contains everything but the background!*/
 main {
   width: 95%;
   max-width: 750px;
@@ -94,42 +105,21 @@ header {
     padding: 0;
     z-index: 100;
 }
-
 header ul{
     list-style-type: none;
     margin: 0 auto;
     padding: 0.9rem;
 }
-
-/*POST LIST STYLE*/
-#postlistdiv ul {
-  font-size: 1.2em;
+header li {
+  font-weight: bold;
+  display: inline-block;
+  margin-right: 2rem;
   padding: 0;
-  list-style-type: none;
 }
-#recentpostlistdiv ul {
-  font-size: 1.2em;
-  padding: 0;
-  list-style-type: none;
+header a {
+  color: white;
+  text-decoration: none;
 }
-.moreposts {
-  font-size: 0.8em;
-  margin-top: 0.2em;
+header li a:hover {
+  text-decoration: underline;
 }
-
-/*NEXT AND PREVIOUS LINKS STYLE*/
-#nextprev {
-  text-align: center;
-  margin-top: 1.4em;
-}
-
-/*DISQUS STYLE*/
-#disqus_thread {
-  margin-top: 1.6em;
-}
-
-/*FOOTER STYLE*/
-#footer {
-  display: none;
-}
-  

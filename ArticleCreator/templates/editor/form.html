@@ -1,0 +1,54 @@
+{% extends 'admin/adminbase.html' %}
+{% load static %}
+{% block title %}
+{{ model }}
+{% endblock %}
+{% block css %}
+{% endblock %}
+
+
+
+{% block content %}
+
+<style>
+    form {
+        text-align: center;
+        width: 40%;
+        margin: 0 auto;
+    }
+    input,
+    select,
+    form button {
+        height: 30px;
+        font-size: 20px;
+        min-width: 30px;
+        width: 100%;
+    }
+    img {
+        max-height: 300px;
+    }
+    body{margin-bottom: 500px;}
+
+</style>
+
+<div class="cancel"><a href="{% url 'admin' %}">
+    <button class="button">back</button></a>
+</div>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Submit</button>
+</form>
+
+{% if form.instance.id %}
+    <a href="{% url 'deletemodel' modelname=model id=form.instance.id %}">DELETE</a>
+{% endif %}
+
+{% include 'tools/imgdisplayscript.html' %}
+{% include 'tools/textareasizescript.html' %}
+
+{% endblock %}
+
+
+ 

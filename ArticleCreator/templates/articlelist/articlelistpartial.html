@@ -1,0 +1,14 @@
+{% for article in articles %}
+<a href="{% url 'article' slug=article.slug %}"> 
+    <article>
+        <h2>{{ article }}</h2>
+        {% if article.image %}    
+            <div class="image-container">
+                <img src="{{ article.image.url }}">
+            </div>
+        {% endif %}
+    </article>
+</a>
+{% empty %}
+    <h1>none yet!</h1>
+{% endfor %}
