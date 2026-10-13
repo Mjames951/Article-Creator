@@ -10,10 +10,11 @@
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
 </head>
 <body>
+    {% include 'scripts/htmx.html' %}
     <header>
         <ul>
             <li><a href="{% url 'index' %}">Articles</a></li>
-            <li><a href="{% url 'editor' articleID=0 %}">Editor</a></li>
+            <li><a href="{% url 'editor' %}">Editor</a></li>
         </ul>
     </header>
 

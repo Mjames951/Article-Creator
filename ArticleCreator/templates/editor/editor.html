@@ -1,100 +1,19 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
-    <title>
-        Article Editor
-    </title>
 
-    <link href="{% static 'css/base.css' %}" rel="stylesheet">
-    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
-</head>
 
-    {% if article.published %}
-    <a href="{% url 'publisharticle' articleID=article.id %}"><button class="button" style="float: left; margin-left: 1rem; width: 10rem; background-color: pink;">UN-publish >:)</button></a>
-    {% else %}
-    <a href="{% url 'publisharticle' articleID=article.id %}"><button class="button" style="float: left; margin-left: 1rem; width: 10rem; background-color: lightblue;">publish article!</button></a>
-    {% endif %}
-    <a href="{% url 'editmodel' modelname='article' id=article.id %}"><button class="button" style="float: left; margin-left: 1rem; width: 15rem;">edit title / cover image</button></a>
-    <a href="{% url 'article' slug=article.slug %}"><button class="button" style="float: left; margin-left: 1rem; width: 10rem;">go to article</button></a>
+{% block main %}
 
-<br style="clear: both;">
-<div class="section">
-{% if not form.instance.id %}
-<p style="font-size: .75rem; margin: .5rem;"><u>ADDING NEW SECTION</u></p>
-{% else %}
-<a href="{% url 'articleeditor' articleID=article.id %}"><button class="button" style="margin-left: 2rem; padding: .5rem; width: 10rem;">cancel edit</button></a>
-{% endif %}
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% for section in form %}
-        <div>
-            <h2>{{ section.label|title }}</h2>
-            {% if section.name == 'image' %}
-                <br>
-                <img src="" id="img"><br>
-                {% if form.instance.image %}
-                <img src="{{ form.instance.image.url }}" style="max-width: 250px; max-height: 250px;">
-                {% endif %}
-                <label for="id_image" class="file-upload">Upload Image</label>
-                <input type="file" name="image" accept="image/*" id="id_image" onchange="readURL(this)">
-                <br><br>
-            {% else %}
-                {{ section }}
-            {% endif %}
-
-            {% if section.name in form.errors %}
-                <br><p>{{ section.errors.as_text }}!!</p><br>
-            {% endif %}
-        </div>
-    {% endfor %}
-    <p>{{ form.non_field_errors.as_text }}</p>
-    <button type="submit">Submit</button>
-</form>
-{% if form.instance.id %}
-<div style="margin-top: 7rem; float: left;">
-    <a href="{% url 'articlesectionaction' articleID=article.id sectionID=form.instance.id action='delete' %}">
-        <p style="font-size: .8rem; margin: 0; color: darkred;"><b><u>DELETE SECTION</u></b></p>
-    </a>
-</div>
-{% endif %}
+<h2>Edit an existing article</h2>
+<p>Put article choices here</p>
+<div hx-get="{% url 'textbox' %}" hx-trigger="click" hx-target="this" hx-swap="outerHTML" style="background-color: lightskyblue;">
+  <h2>Create a new article</h2>
 </div>
 
-<div class="section" style="float: right; margin-right: 1rem;">
-    <p style="font-size: .75rem; margin: 0;"><b><u>ARTICLE PREVIEW (click a section to edit)</u></b></p>
-    <div class="blog">
-        <h1>{{ article.title }} </h1>
-        <div class="info">
-             <p>{{ article.date }}</p>
-            <p>by: {% if article.author %}{{ article.author.name }}{% else %}Planet Plum{% endif %}</p>   
-            <br>  
-        </div>
-       {% if article.image %}
-            <img src="{{ article.image.url }}">
-            {% if article.caption %}<div class="caption">{{ article.caption|safe }}</div>{% endif %}
-        {% endif %}
-        {% if article.description %}{{ article.description|safe }}{% endif %}
-        {% for section in sections %}
-            
-                <div class="blogsection"><a href="{% url 'articlesectioneditor' articleID=article.id sectionID=section.id %}">
-                {% if section.text %}{{ section.text|safe }}{% endif %}
-                {% if section.image %}<img src={{ section.image.url }}>{% endif %}
-                {% if section.caption %}<div class="caption">{{ section.caption|safe }}</div>{% endif %}
-            </a></div>
-            <div class="blogsectionunder" style="position: relative; overflow: visible;">
-                <div class="sectionmenu" style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr;">
-                    <div><a href="{% url 'articlesectioneditor' articleID=article.id sectionID=section.id %}">edit</a></div>
-                    <div>{% if not forloop.first %}<a href="{% url 'articlesectionaction' articleID=article.id sectionID=section.id action='up' %}">move up</a>{% endif %}</div>
-                    <div><a href="{% url 'articlesectionaction' articleID=article.id sectionID=section.id action='add' %}">add section</a></div>
-                    <div>{% if not forloop.last %}<a href="{% url 'articlesectionaction' articleID=article.id sectionID=section.id action='down' %}">move down</a>{% endif %}</div>
-                </div>
-               
-            </div>
-        {% endfor %}
-    </div>
-</div>
+
+
+{% endblock %}
+
 
 
 
