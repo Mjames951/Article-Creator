@@ -4,19 +4,23 @@
 
 {% block main %}
 
-<h2>Edit an existing article</h2>
-<p>Put article choices here</p>
-<div hx-get="{% url 'textbox' %}" hx-trigger="click" hx-target="this" hx-swap="outerHTML" style="background-color: lightskyblue;">
+<div id="editor-main">
+  <h2>Edit an existing article</h2>
+  <p>Put article choices here</p>
+  
+<div hx-get="{% url 'editorform' %}" hx-trigger="click" hx-target="this" hx-swap="outerHTML" style="background-color: lightskyblue;">
+
   <h2>Create a new article</h2>
 </div>
 
+</div>
 
 <link href="{% static 'css/quill.css' %}" rel="stylesheet">
 <script src="{% static 'scripts/quill.js' %}"></script>
 {% endblock %}
 
-{% include 'tools/imgdisplayscript.html' %}
-{% include 'tools/textareasizescript.html' %}
+{% include 'scripts/imgdisplayscript.html' %}
+{% include 'scripts/textareasizescript.html' %}
 
 
 

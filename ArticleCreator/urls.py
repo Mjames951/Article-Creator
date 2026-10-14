@@ -7,7 +7,7 @@ urlpatterns = [
     path('list/', views.articleList, name='articlelist'),
 
     path('articlecreator/', views.articleCreator, name='editor'),
-    path('articlecreator/textbox/', views.textbox, name='textbox'),
+    path('articlecreator/form/', views.editorForm, name='editorform'),
     
     path('publisher/<articleID>/', views.publishArticle, name='publisharticle'),
     path('<slug:slug>/', views.article, name='article'),

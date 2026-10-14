@@ -6,10 +6,10 @@ class ArticleCategoryForm(forms.ModelForm):
         model = Category
         fields = ['name']
 
-class ArticleStarterForm(forms.ModelForm):
+class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ['title', 'category', 'author', 'image', 'content']
+        fields = ['category', 'author', 'title', 'image', 'content']
         labels = {
             'image': 'Main Article Image',
             'description': 'Description (first paragraph - summary / hook)'

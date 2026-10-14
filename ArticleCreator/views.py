@@ -21,6 +21,15 @@ def articleCreator(request):
     return render(request, 'editor/editor.html', {
     })
 
+def editorForm(request):
+    if request.POST:
+        pass
+    else:
+        form = ArticleForm()
+    return render(request, 'editor/form.html', {
+        'form': form,
+    })
+
 def textbox(request):
     return render(request, 'editor/textbox.html', {
 

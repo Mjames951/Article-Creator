@@ -7,10 +7,10 @@ from .tools import emailhandler
 
 from ArticleCreator.models import Article, Author
 from ArticleCreator.models import Category as ArticleCategory
-from ArticleCreator.forms import ArticleStarterForm, AuthorForm, ArticleCategoryForm 
+from ArticleCreator.forms import ArticleForm, AuthorForm, ArticleCategoryForm 
 
 Forms = {
-    'article': ArticleStarterForm,
+    'article': ArticleForm,
     'author': AuthorForm,
     'articlecategory': ArticleCategoryForm,
 }
